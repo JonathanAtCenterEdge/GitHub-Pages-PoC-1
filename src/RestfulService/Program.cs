@@ -34,4 +34,11 @@ app.MapPut("/items/{id}", (int id, ItemDto item) =>
 })
 .WithName("UpdateItem");
 
+app.MapPut("/items/new/{id}", (int id, ItemDto item) =>
+    {
+        item.Id = id;
+        return Results.Ok(item);
+    })
+    .WithName("UpdateItem");
+
 app.Run();
