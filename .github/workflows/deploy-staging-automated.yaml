@@ -1,0 +1,20 @@
+on:
+  workflow_run:
+    workflows: [Build - Push]
+    branches: [main, master]
+    types: [completed]
+
+name: Deploy - Staging
+run-name: "Deploy: Staging - Automated - ${{ github.event.workflow_run.id }} - [${{ github.run_id }}]"
+
+concurrency:
+  group: Deployment - Staging
+  cancel-in-progress: false
+
+jobs:
+  Deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
