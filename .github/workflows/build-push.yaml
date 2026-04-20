@@ -20,6 +20,7 @@ jobs:
   swagger-spec:
     name: Generate - Swagger Spec
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     permissions:
       contents: write
     steps:
