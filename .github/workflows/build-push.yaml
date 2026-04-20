@@ -16,3 +16,20 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+
+  swagger-spec:
+    name: Generate - Swagger Spec
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Restore - Tools
+      run: dotnet tool restore --tool-manifest src/.config/dotnet-tools.json
+
+    - name: Build
+      run: dotnet build src/RestfulService.slnx --configuration Release
+
+    - name: Generate - Swagger Spec
+      run: dotnet swagger tofile --output swagger.json src/RestfulService/bin/Release/net10.0/RestfulService.dll v1
