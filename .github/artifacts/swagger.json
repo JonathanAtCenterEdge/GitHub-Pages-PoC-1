@@ -73,6 +73,28 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "RestfulService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+        ],
+        "operationId": "DeleteItem",
+        "parameters": [
+          {
+            "name": "_",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
       }
     },
     "/items": {
