@@ -65,7 +65,7 @@ app.MapPut("/items/{id:int}", (int id, ItemDto item) =>
 
 #region DELETE
 
-app.MapDelete("/items/{id:int}", (int _) => Results.NoContent())
+app.MapDelete("/items/{id:int}", (int id) => Results.NoContent())
     .WithName("DeleteItem")
     .Produces(StatusCodes.Status204NoContent);
 
