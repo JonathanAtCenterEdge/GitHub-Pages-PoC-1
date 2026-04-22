@@ -81,8 +81,8 @@
         "operationId": "DeleteItem",
         "parameters": [
           {
-            "name": "_",
-            "in": "query",
+            "name": "id",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
