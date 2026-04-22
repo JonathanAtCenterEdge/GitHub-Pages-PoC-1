@@ -53,7 +53,7 @@ app.MapPost("/items", (ItemDto item) =>
 
 #region PUT
 
-app.MapPut("/items/{id}", (int id, ItemDto item) =>
+app.MapPut("/items/{id:int}", (int id, ItemDto item) =>
 {
     item.Id = id;
     return Results.Ok(item);
@@ -61,6 +61,13 @@ app.MapPut("/items/{id}", (int id, ItemDto item) =>
 .WithName("UpdateItem")
 .Produces<ItemDto>();
 
+#endregion
+
+#region DELETE
+
+app.MapDelete("/items/{id:int}", (int _) => Results.NoContent())
+    .WithName("DeleteItem")
+    .Produces(StatusCodes.Status204NoContent);
 
 #endregion
 
