@@ -62,6 +62,17 @@
       }
     },
     "/items": {
+      "get": {
+        "tags": [
+          "RestfulService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+        ],
+        "operationId": "GetItems",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "post": {
         "tags": [
           "RestfulService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
