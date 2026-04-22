@@ -21,7 +21,8 @@ app.MapGet("/items/{id:int}", (int id) =>
     var item = new ItemDto { Id = id, Name = "Sample Item", Description = "A sample description." };
     return Results.Ok(item);
 })
-.WithName("GetItem");
+.WithName("GetItem")
+.Produces<ItemDto>();
 
 app.MapGet("/items", () =>
     {
@@ -34,7 +35,8 @@ app.MapGet("/items", () =>
 
         return Results.Ok(new List<ItemDto> { item });
     })
-    .WithName("GetItems");
+    .WithName("GetItems")
+    .Produces<List<ItemDto>>();
 
 #endregion
 
@@ -44,7 +46,8 @@ app.MapPost("/items", (ItemDto item) =>
 {
     return Results.Created($"/items/{item.Id}", item);
 })
-.WithName("CreateItem");
+.WithName("CreateItem")
+.Produces<ItemDto>(StatusCodes.Status201Created);
 
 #endregion
 
@@ -55,7 +58,8 @@ app.MapPut("/items/{id}", (int id, ItemDto item) =>
     item.Id = id;
     return Results.Ok(item);
 })
-.WithName("UpdateItem");
+.WithName("UpdateItem")
+.Produces<ItemDto>();
 
 
 #endregion
