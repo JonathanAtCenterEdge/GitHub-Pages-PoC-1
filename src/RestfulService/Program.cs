@@ -60,4 +60,26 @@ app.MapPut("/items/{id}", (int id, ItemDto item) =>
 
 #endregion
 
+app.MapGet("/packages/{id:int}", (int id) =>
+    {
+        var item = new ItemDto
+        {
+            Id = id,
+            Name = "Sample Item",
+            Description = "A sample description."
+        };
+
+        return Results.Ok(new PackageDto
+        {
+            Id = id,
+            Items = [item]
+        });
+    })
+    .WithName("GetPackage")
+    .Produces<PackageDto>();
+
+app.MapPost("/packages/{id:int}", (int id, PackageDto packageDto) => Results.Created())
+    .WithName("PostPackage")
+    .Produces(StatusCodes.Status201Created);
+
 app.Run();
