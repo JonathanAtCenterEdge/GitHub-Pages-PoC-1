@@ -37,6 +37,7 @@ jobs:
         name: swagger
         run-id: ${{ github.event.workflow_run.id }}
         path: .github/pages/v1
+        github-token: ${{ github.token }}
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
