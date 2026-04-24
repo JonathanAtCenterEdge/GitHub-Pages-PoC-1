@@ -39,8 +39,12 @@ jobs:
         path: .github/pages/v1
         github-token: ${{ github.token }}
 
+    - name: Shorten sha
+      id: sha
+      run: echo "short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
     - name: Version spec
-      run: jq --arg v "$(jq -r '.info.version' .github/pages/v1/swagger.json)-${{ github.sha }}" '.info.version = $v' .github/pages/v1/swagger.json > tmp.json && mv tmp.json .github/pages/v1/swagger.json
+      run: jq --arg v "$(jq -r '.info.version' .github/pages/v1/swagger.json)-${{ steps.sha.outputs.short }}" '.info.version = $v' .github/pages/v1/swagger.json > tmp.json && mv tmp.json .github/pages/v1/swagger.json
 
     - name: Build ReDoc
       run: npx @redocly/cli@2.29.2 build-docs .github/pages/v1/swagger.json -o .github/pages/index.html
