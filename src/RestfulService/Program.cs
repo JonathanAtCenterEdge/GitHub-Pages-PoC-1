@@ -22,13 +22,14 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty;
 });
 
-#region GET
+#region Items
 
 app.MapGet("/items/{id:int}", (int id) =>
 {
     var item = new ItemDto { Id = id, Name = "Sample Item", Description = "A sample description." };
     return Results.Ok(item);
 })
+.WithTags("Items")
 .WithName("GetItem");
 
 app.MapGet("/items", () =>
@@ -44,27 +45,20 @@ app.MapGet("/items", () =>
     })
     .WithName("GetItems");
 
-#endregion
-
-#region POST
-
 app.MapPost("/items", (ItemDto item) =>
 {
     return Results.Created($"/items/{item.Id}", item);
 })
+.WithTags("Items")
 .WithName("CreateItem");
-
-#endregion
-
-#region PUT
 
 app.MapPut("/items/{id}", (int id, ItemDto item) =>
 {
     item.Id = id;
     return Results.Ok(item);
 })
+.WithTags("Items")
 .WithName("UpdateItem");
-
 
 #endregion
 
