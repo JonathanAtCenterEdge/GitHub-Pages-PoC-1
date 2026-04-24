@@ -33,17 +33,18 @@ app.MapGet("/items/{id:int}", (int id) =>
 .WithName("GetItem");
 
 app.MapGet("/items", () =>
+{
+    var item = new ItemDto
     {
-        var item = new ItemDto
-        {
-            Id = 1,
-            Name = "Sample Item",
-            Description = "A sample description."
-        };
+        Id = 1,
+        Name = "Sample Item",
+        Description = "A sample description."
+    };
 
-        return Results.Ok(new List<ItemDto> { item });
-    })
-    .WithName("GetItems");
+    return Results.Ok(new List<ItemDto> { item });
+})
+.WithTags("Items")
+.WithName("GetItems");
 
 app.MapPost("/items", (ItemDto item) =>
 {
