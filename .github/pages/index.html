@@ -9,7 +9,14 @@
     <div id="app"></div>
     <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference@1.52.6"></script>
     <script>
-      Scalar.createApiReference('#app', { url: `https://jonathanatcenteredge.github.io/GitHub-Pages-PoC-1/v1/swagger.json`})
+      Scalar.createApiReference('#app', {
+        url: `https://jonathanatcenteredge.github.io/GitHub-Pages-PoC-1/v1/swagger.json`,
+        hideClientButton: true,
+        showOperationId: true,
+        agent: {
+          disabled: true,
+        },
+      })
     </script>
   </body>
 </html>
