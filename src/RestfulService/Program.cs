@@ -1,9 +1,17 @@
+using Microsoft.OpenApi;
 using RestfulService.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Restful Proof-of-Concept",
+        Version = "v1"
+    });
+});
 
 var app = builder.Build();
 
