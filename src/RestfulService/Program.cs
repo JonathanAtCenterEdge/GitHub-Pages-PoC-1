@@ -24,7 +24,7 @@ app.UseSwaggerUI(options =>
 
 #region Items
 
-app.MapGet("/items/{id:int}/new", (int id) =>
+app.MapGet("/items/{id:int}", (int id) =>
 {
     var item = new ItemDto { Id = id, Name = "Sample Item", Description = "A sample description." };
     return Results.Ok(item);
@@ -32,7 +32,7 @@ app.MapGet("/items/{id:int}/new", (int id) =>
 .WithTags("Items")
 .WithName("GetItem");
 
-app.MapGet("/items/new", () =>
+app.MapGet("/items", () =>
 {
     var item = new ItemDto
     {
