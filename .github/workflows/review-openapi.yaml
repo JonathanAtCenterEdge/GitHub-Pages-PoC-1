@@ -1,0 +1,21 @@
+name: Review - OpenAPI
+
+on:
+  workflow_run:
+    workflows: ["Build - Push"]
+    types:
+    - completed
+
+jobs:
+  diff:
+    name: Diff OpenAPI Spec
+    if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download - swagger artifact
+      uses: actions/download-artifact@v8
+      with:
+        name: swagger
+        run-id: ${{ github.event.workflow_run.id }}
+        path: artifacts/pr
+        github-token: ${{ github.token }}

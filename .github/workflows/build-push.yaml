@@ -17,19 +17,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - run: dotnet tool restore
-      working-directory: src
-
-    - run: dotnet build src/RestfulService.slnx --configuration Release
-
     - run: |
-        mkdir -p ../.github/artifacts
-        dotnet tool run swagger tofile --output ../.github/artifacts/swagger.json RestfulService/bin/Release/net10.0/RestfulService.dll v1
+        dotnet build RestfulService.slnx --configuration Release
+        dotnet tool restore
+        dotnet tool run swagger tofile --output swagger.json RestfulService/bin/Release/net10.0/RestfulService.dll v1
       working-directory: src
 
     - name: Upload - swagger.json
       uses: actions/upload-artifact@v5
       with:
         name: swagger
-        path: .github/artifacts/swagger.json
+        path: src/swagger.json
         if-no-files-found: error
