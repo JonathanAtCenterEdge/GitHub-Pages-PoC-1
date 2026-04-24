@@ -46,7 +46,7 @@ app.MapGet("/items", () =>
 .WithTags("Items")
 .WithName("GetItems");
 
-app.MapPost("/items", (ItemDto item) =>
+app.MapPost("/items/new", (ItemDto item) =>
 {
     return Results.Created($"/items/{item.Id}", item);
 })
