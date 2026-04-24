@@ -32,7 +32,7 @@ app.MapGet("/items/{id:int}", (int id) =>
 .WithTags("Items")
 .WithName("GetItem");
 
-app.MapGet("/items", () =>
+app.MapGet("/items/new", () =>
 {
     var item = new ItemDto
     {
@@ -46,7 +46,7 @@ app.MapGet("/items", () =>
 .WithTags("Items")
 .WithName("GetItems");
 
-app.MapPost("/items", (ItemDto item) =>
+app.MapPost("/items/new", (ItemDto item) =>
 {
     return Results.Created($"/items/{item.Id}", item);
 })
