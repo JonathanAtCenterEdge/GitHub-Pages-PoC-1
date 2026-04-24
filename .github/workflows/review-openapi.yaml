@@ -19,3 +19,5 @@ jobs:
         run-id: ${{ github.event.workflow_run.id }}
         path: artifacts/pr
         github-token: ${{ github.token }}
+    - name: Dump context
+      uses: crazy-max/ghaction-dump-context@v3
