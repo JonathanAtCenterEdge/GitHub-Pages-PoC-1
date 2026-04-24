@@ -32,11 +32,20 @@ jobs:
     - name: Setup Pages
       uses: actions/configure-pages@v5
 
+    - run: dotnet tool restore
+      working-directory: src
+
+    - run: dotnet build src/RestfulService.slnx --configuration Release
+
+    - run: |
+        mkdir -p ../.github/pages
+        dotnet tool run swagger tofile --output ../.github/pages/swagger.json RestfulService/bin/Release/net10.0/RestfulService.dll v1
+      working-directory: src
+
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        # Upload entire repository
-        path: '.'
+        path: .github/pages
 
     - name: Deploy to GitHub Pages
       id: deployment
