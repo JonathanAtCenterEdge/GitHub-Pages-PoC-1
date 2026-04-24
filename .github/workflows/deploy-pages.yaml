@@ -39,6 +39,9 @@ jobs:
         path: .github/pages/v1
         github-token: ${{ github.token }}
 
+    - name: Build - ReDoc
+      run: npx @redocly/cli@2.29.2 build-docs .github/pages/v1/swagger.json -o .github/pages/index.html
+
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v5
       with:
