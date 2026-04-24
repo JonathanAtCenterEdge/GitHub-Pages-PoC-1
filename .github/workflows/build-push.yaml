@@ -28,7 +28,7 @@ jobs:
       working-directory: src
 
     - name: Upload - swagger.json
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: swagger
         path: .github/artifacts/swagger.json

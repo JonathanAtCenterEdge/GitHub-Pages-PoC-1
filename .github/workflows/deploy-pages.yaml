@@ -32,7 +32,7 @@ jobs:
       uses: actions/configure-pages@v5
 
     - name: Download - Swagger artifact
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: swagger
         run-id: ${{ github.event.workflow_run.id }}
@@ -40,7 +40,7 @@ jobs:
         github-token: ${{ github.token }}
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@v5
       with:
         path: .github/pages
 
