@@ -31,5 +31,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: swagger
-        path: ../.github/artifacts/swagger.json
+        path: .github/artifacts/swagger.json
         if-no-files-found: error
