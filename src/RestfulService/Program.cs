@@ -32,7 +32,7 @@ app.MapGet("/items/{id:int}", (int id) =>
 .WithTags("Items")
 .WithName("GetItem");
 
-app.MapGet("/items/new", () =>
+app.MapGet("/items", () =>
 {
     var item = new ItemDto
     {
